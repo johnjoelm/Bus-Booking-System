@@ -1,0 +1,96 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+        <span class="title-center">{{dialogData.action}} Bus</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="busForm">
+        <div fxFlex fxLayout="column">
+            <div fxLayout="row wrap">
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="busName" required>
+                    <mat-error *ngIf="busForm.controls.busName.touched && busForm.controls.busName.invalid">
+                        <span *ngIf="busForm.controls.busName.errors.required">This field is mandatory.</span>
+                        <span *ngIf="busForm.controls.busName.errors.pattern">This field is invalid.</span>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>Day</mat-label>
+                    <mat-select formControlName="day">
+                        <mat-option *ngFor="let day of days" [value]="day">{{day}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="busForm.controls.day.touched && busForm.controls.day.invalid">
+                        <span *ngIf="busForm.controls.day.errors.required">This field is mandatory.</span>
+                        <span *ngIf="busForm.controls.day.errors.pattern">This field is invalid.</span>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row wrap">
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>From</mat-label>
+                    <input matInput formControlName="from" required>
+                    <mat-error *ngIf="busForm.controls.from.touched && busForm.controls.from.invalid">
+                        <span *ngIf="busForm.controls.from.errors.required">This field is mandatory.</span>
+                        <span *ngIf="busForm.controls.from.errors.pattern">This field is invalid.</span>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>To</mat-label>
+                    <input matInput formControlName="to" required>
+                    <mat-error *ngIf="busForm.controls.to.touched && busForm.controls.to.invalid">
+                        <span *ngIf="busForm.controls.to.errors.required">This field is mandatory.</span>
+                        <span *ngIf="busForm.controls.to.errors.pattern">This field is invalid.</span>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row wrap">
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>Depart Time</mat-label>
+                    <mat-select formControlName="departTime">
+                        <mat-option *ngFor="let time of times" [value]="time">{{time}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="busForm.controls.departTime.touched && busForm.controls.departTime.invalid">
+                        <span *ngIf="busForm.controls.departTime.errors.required">This field is mandatory.</span>
+                        <span *ngIf="busForm.controls.departTime.errors.pattern">This field is invalid.</span>
+                    </mat-error>
+                </mat-form-field>
+                
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>Arival Time</mat-label>
+                    <mat-select formControlName="arivalTime">
+                        <mat-option *ngFor="let time of times" [value]="time">{{time}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="busForm.controls.arivalTime.touched && busForm.controls.arivalTime.invalid">
+                        <span *ngIf="busForm.controls.arivalTime.errors.required">This field is mandatory.</span>
+                        <span *ngIf="busForm.controls.arivalTime.errors.pattern">This field is invalid.</span>
+                    </mat-error>
+                </mat-form-field> 
+
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>Charge Per Seat</mat-label>
+                    <input matInput formControlName="chargePerSeat" required>
+                    <mat-error *ngIf="busForm.controls.chargePerSeat.touched && busForm.controls.chargePerSeat.invalid">
+                        <span *ngIf="busForm.controls.chargePerSeat.errors.required">This field is mandatory.</span>
+                        <span *ngIf="busForm.controls.chargePerSeat.errors.pattern">This field is invalid.</span>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+        </div>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+    <button mat-raised-button color="primary" type="submit" (click)="handleSubmit()"
+        [disabled]="!(busForm.valid && busForm.dirty)">{{action}}</button>
+        <button mat-raised-button color="primary" mat-dialog-close>Close</button>
+</mat-dialog-actions>

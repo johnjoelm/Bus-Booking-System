@@ -1,0 +1,61 @@
+<mat-card>
+    <b><span>Manage Bus</span></b>
+    <button mat-flat-button color="primary" class="float-right" (click)="handleAddAction()">Add Bus</button>
+</mat-card>
+<hr>
+<mat-card>
+    <mat-form-field appearance="fill">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input>
+    </mat-form-field>
+</mat-card>
+<hr>
+<div class="responsive_table">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="busName">
+            <th mat-header-cell *matHeaderCellDef> Name</th>
+            <td mat-cell *matCellDef="let element">{{element.busName}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="day">
+            <th mat-header-cell *matHeaderCellDef> Day</th>
+            <td mat-cell *matCellDef="let element">{{element.day}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="from">
+            <th mat-header-cell *matHeaderCellDef> From</th>
+            <td mat-cell *matCellDef="let element">{{element.from}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="to">
+            <th mat-header-cell *matHeaderCellDef> To</th>
+            <td mat-cell *matCellDef="let element">{{element.to}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="departTime">
+            <th mat-header-cell *matHeaderCellDef> Depart Time</th>
+            <td mat-cell *matCellDef="let element">{{element.departTime}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="arivalTime">
+            <th mat-header-cell *matHeaderCellDef> Arrival Time</th>
+            <td mat-cell *matCellDef="let element">{{element.arivalTime}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="chargePerSeat">
+            <th mat-header-cell *matHeaderCellDef> Charge Per Seat</th>
+            <td mat-cell *matCellDef="let element">{{element.chargePerSeat}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef> Action</th>
+            <td mat-cell *matCellDef="let element" class="action-link">
+                <button mat-icon-button color="primary" matTooltip="Edit" (click)="handleEditAction(element)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+        <tr mat-row *matRowDef="let row;columns:displayedColumns"></tr> 
+    </table>
+</div>

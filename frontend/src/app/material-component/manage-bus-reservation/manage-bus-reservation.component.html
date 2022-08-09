@@ -1,0 +1,76 @@
+<mat-card>
+    <b><span>Manage Bus Reservation</span></b>
+    <!-- <button mat-flat-button color="primary" class="float-right" (click)="handleAddAction()">Add Product</button> -->
+</mat-card>
+<hr>
+<mat-card>
+    <form [formGroup]="productForm">
+    <mat-form-field appearance="fill" fxFlex>
+        <mat-label>From</mat-label>
+        <input matInput formControlName="from" required>
+        <mat-error *ngIf="productForm.controls.from.touched && productForm.controls.from.invalid">
+            <span *ngIf="productForm.controls.from.errors.required">This field is mandatory.</span>
+            <span *ngIf="productForm.controls.from.errors.pattern">This field is invalid.</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" fxFlex>
+        <mat-label>To</mat-label>
+        <input matInput formControlName="to" required>
+        <mat-error *ngIf="productForm.controls.to.touched && productForm.controls.to.invalid">
+            <span *ngIf="productForm.controls.to.errors.required">This field is mandatory.</span>
+            <span *ngIf="productForm.controls.to.errors.pattern">This field is invalid.</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" fxFlex>
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dateOfJourney" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="productForm.controls.dateOfJourney.touched && productForm.controls.dateOfJourney.invalid">
+            <span *ngIf="productForm.controls.dateOfJourney.errors.required">This field is mandatory.</span>
+            <span *ngIf="productForm.controls.dateOfJourney.errors.pattern">This field is invalid.</span>
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-fab color="primary" class="float-right" (click)="handleSearchAction()" [disabled]="!(productForm.valid && productForm.dirty)"><mat-icon>search</mat-icon></button>
+      </form>
+</mat-card>
+<hr>
+<div class="responsive_table">
+    <mat-card *ngIf="hideOrShow == true" style="color:red;font-size: 25px;"><mat-icon>info</mat-icon> Bus Not found for these details.</mat-card>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="hideOrShow == false">
+        <ng-container matColumnDef="busName">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let element">{{element.busName}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="departTime">
+            <th mat-header-cell *matHeaderCellDef>Depart Time</th>
+            <td mat-cell *matCellDef="let element">{{element.departTime}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="arivalTime">
+            <th mat-header-cell *matHeaderCellDef>Arrival Time</th>
+            <td mat-cell *matCellDef="let element">{{element.arivalTime}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="chargePerSeat">
+            <th mat-header-cell *matHeaderCellDef>Price</th>
+            <td mat-cell *matCellDef="let element">{{element.chargePerSeat}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef>Action</th>
+            <td mat-cell *matCellDef="let element" class="action-link">
+                <button mat-icon-button color="primary" matTooltip="Book Seat" (click)="handleSeatAction(element)">
+                    <mat-icon>visibility</mat-icon>
+                    </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+        <tr mat-row *matRowDef="let row; columns:displayedColumns"></tr>
+    </table>
+</div>

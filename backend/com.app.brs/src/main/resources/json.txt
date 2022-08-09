@@ -1,0 +1,114 @@
+Url:- http://localhost:8082/bus/addBus
+Type:- POST
+Json:- 
+{
+  "busName":"Sam Bus",
+  "day":"Tuesday",
+  "from":"Indore",
+  "to":"Patna",
+  "departTime":"10:00 Am",
+  "arivalTime":"12:00 Pm",
+  "chargePerSeat":"850"
+}
+
+===============================================
+
+Url:- http://localhost:8082/bus/getAllBus
+Type:- Get
+
+===============================================
+
+Url:- http://localhost:8082/bus/getAllBusByDate
+Type:- Post
+Json:- 
+{
+    "date":"19/07/2022",
+    "from":"Indore",
+    "to":"Patna"
+}
+
+===============================================
+
+Url:- http://localhost:8082/appUser/signUp
+Type:- Post
+Json:- 
+{
+  "username":"sam",
+  "password":"pass",
+  "fullName":"Sameer",
+  "email":"sameer@gmail.com",
+  "phone":"1234567890"
+}
+
+===============================================
+
+Url:- http://localhost:8082/appUser/logIn
+Type:- Post
+Json:- 
+{
+  "username":"sam",
+  "password":"pass"
+}
+
+===============================================
+Url:- http://localhost:8082/appUser/changePassword
+Type:- Post
+Json:- {"username":"sam","password":"pass","oldPassword":"passd"}
+
+===============================================
+Url:- http://localhost:8082/reservation/reserveSeat
+Type:- Post
+Json:-
+{
+    "busId":"BS-290164859381700",
+    "userId":"AU-290930125045500",
+    "seats":"2,3,4,5,6",
+    "journyDate":"22/07/2022",
+    "status":"Booked",
+    "fare": "4250"
+}
+
+===============================================
+Url:- http://localhost:8082/reservation/getReservationByUserId/AU-290930125045500/Booked
+Type:- Get
+ (Used to get Booked bus tickets and Cancelled tickets details)
+
+===============================================
+Url:- http://localhost:8082/reservation/getBookedSeats
+Type:- Post
+Json:- 
+{
+    "busId":"BS-290164859381700",
+    "date":"22/07/2022"
+}
+===============================================
+Url:- http://localhost:8082/reservation/cancleBooking/RE-360089471190100
+Type:- Get
+
+===============================================
+Url:- http://localhost:8082/bus/updateBus
+Type:- Post
+Json:-
+{
+  "busName":"Gaurav Bus",
+  "day":"Tuesday",
+  "from":"Indore",
+  "to":"Patna",
+  "departTime":"10:00 Am",
+  "arivalTime":"23:00",
+  "chargePerSeat":"850",
+  "id": "BS-367884458024500"
+}
+
+================================================
+Url:- http://localhost:8082/wallet/addMoney
+Type:- Post
+Json:-
+{
+    "amount":"1000",
+    "userId":"AU-3624103258112000"
+}
+
+================================================
+Url:- http://localhost:8082/wallet/getAmountByUserId/AU-3624103258112000
+Type:- Get

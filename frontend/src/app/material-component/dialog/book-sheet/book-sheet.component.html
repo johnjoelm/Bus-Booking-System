@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+        <span class="title-center">Select Your Sheets</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+<mat-dialog-content class="mat-typography">
+<div class="grid-container">
+    <span *ngFor="let sheet of sheetsList">
+        <button mat-raised-button color="primary" style="background-color: lightgreen !important;color: black;margin: 5px;padding: 10px 70px 10px 70px !important;width: 180px;" (click)="addSheet(sheet)">{{sheet}}</button>
+    </span>
+
+    <span *ngFor="let sheet of bookedSheetsList">
+        <button mat-raised-button color="primary" style="margin: 5px;padding: 10px 70px 10px 70px !important;width: 180px;">{{sheet}}</button>
+    </span>
+</div>
+<br>
+<mat-card>Selected Sheets by you: {{selectedSheetsByUser}}
+    <br>
+    Total to Pay: {{total}}
+    <br>
+    Bus Name: {{busDetails?.busName}}
+</mat-card>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+    <button mat-raised-button color="primary" type="submit" (click)="handleSubmit()" [disabled]="validateSubmit()">Book Ticket</button>
+    <button mat-raised-button color="primary" mat-dialog-close>Close</button>
+</mat-dialog-actions>
